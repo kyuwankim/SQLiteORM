@@ -2,9 +2,6 @@ package com.kyuwankim.android.sqliteorm;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,17 +29,23 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
         // 기본 데이터 넣기
-        helper.create(new Memo("AAA","BBB"));
-        helper.create(new Memo("CCC","BBB"));
-        helper.create(new Memo("DDD","BBB"));
-        helper.create(new Memo("EEE","BBB"));
+//        helper.create(new Memo("AAA","BBB"));
+//        helper.create(new Memo("CCC","BBB"));
+//        helper.create(new Memo("DDD","BBB"));
+//        helper.create(new Memo("EEE","BBB"));
         // 데이터 검색하기
-        List<Memo> datas =  helper.search("AAA");
-        for(Memo one : datas){
-            Log.i("Memo",one.getId()+" title = "+one.getTitle()+", content ="+one.getContent());
-        }
+//        List<Memo> datas =  helper.search("BBB");
+////        List<Memo> datas =  helper.readAll();
+//
+//        for(Memo one : datas){
+//            Log.i("Memo",one.getId()+" title = "+one.getTitle()+", content ="+one.getContent());
+//        }
 
 
+        //데이터 수정하기
+        Memo memo = helper.read(3);
+        memo.setContent("내용");
+        helper.update(memo);
 
 
     }

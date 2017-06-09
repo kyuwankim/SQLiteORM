@@ -99,15 +99,15 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     }
 
     // Search
-    public List<Memo> search(String word){
+    public List<Memo> search(String word) {
         List<Memo> datas = null;
 
         try {
             // 1. 테이블에 연결
             Dao<Memo, Integer> dao = getDao(Memo.class);
             // 2. 데이터 검색하기
-            String query = "select * from memo where content like '%"+word+"%'";
-            GenericRawResults<Memo> temps = dao.queryRaw(query,dao.getRawRowMapper());
+            String query = "select * from memo where content like '%" + word + "%'";
+            GenericRawResults<Memo> temps = dao.queryRaw(query, dao.getRawRowMapper());
             datas = temps.getResults();
 
         } catch (SQLException e) {
@@ -119,13 +119,44 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
 
 
     // Upate
-    public void update() {
-
+    public void update(Memo memo) {
+        try {
+            // 1. 테이블에 연결
+            Dao<Memo, Integer> dao = getDao(Memo.class);
+            // 2. 데이터를 수정
+            dao.update(memo);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
     // Delete
-    public void Delete() {
+    public void Delete(Memo memo) {
+        try {
+            // 1. 테이블에 연결
+            Dao<Memo, Integer> dao = getDao(Memo.class);
+            // 2. 데이터를 삭제
+            dao.delete(memo);
+            // * 참고 : 아이디로 삭제
+            // dao.deleteById(3);
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Delete(int memoid) {
+        try {
+            // 1. 테이블에 연결
+            Dao<Memo, Integer> dao = getDao(Memo.class);
+            // 2. 데이터를 삭제
+            dao.deleteById(memoid);
+            // * 참고 : 아이디로 삭제
+            // dao.deleteById(3);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
