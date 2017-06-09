@@ -24,21 +24,30 @@ public class Memo {
 
     public Memo() {
         // OrmLite는 기본생성자가 없으면 동작하지 않는다
+        setDate();
+    }
+
+    public Memo(String title, String content) {
+
+        this.title = title;
+        this.content = content;
+
+        setDate();
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    private void setDate() {
+        this.date = new Date(System.currentTimeMillis());
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
