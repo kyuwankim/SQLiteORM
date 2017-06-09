@@ -6,3 +6,4 @@ package com.kyuwankim.android.sqliteorm;
 
 public class BbsDao {
 }
+
